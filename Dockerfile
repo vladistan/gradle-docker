@@ -9,6 +9,11 @@ RUN curl -sLO https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}
   ln -s gradle-${GRADLE_VERSION} gradle && \
   rm gradle-${GRADLE_VERSION}-all.zip
 
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y ant \
+    && rm -rf /var/lib/apt/lists/* 
+
 ENV GRADLE_HOME /usr/bin/gradle
 ENV PATH $PATH:$GRADLE_HOME/bin
 
